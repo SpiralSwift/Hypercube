@@ -75,10 +75,11 @@ def update(frame : int, ndim : int, dtheta : np.ndarray, rot : np.ndarray, disp 
 
 def get_cli_value(i : int, dft : int, min : int = 0) -> int:
     """
-    Get integer value from CLI
+    Get integer value from the CLI
 
     i: index of argument
     dft: default value
+    min: minimum permitted input
     """
     if len(sys.argv) > i:
         try:
@@ -151,9 +152,8 @@ if __name__ == "__main__":
     vertices = rotate(vertices,itheta,irot,ndim)
     '''
 
-
     # --- Render ---
     fig, ax = plt.subplots()
-    ani = animation.FuncAnimation(fig, update, interval=50, fargs=(ndim,dtheta,rot,disp,dvec,vertices,edges,ecols))
+    ani = animation.FuncAnimation(fig, update, interval=50, fargs=(ndim,dtheta,rot,disp,dvec,vertices,edges,ecols), save_count=0)
     plt.show()
     exit(0)
